@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>设备详情</title>
+</head>
+<body>
+    <h1 align="left">设备参数详情</h1>
+
+    <table border="1px" width="600px" height="400px" style="text-align: center">
+
+        <tr>
+            <th align="center" colspan="3">客户公司：{{ company_info[2] }}</th>
+            <th align="center" colspan="3">设备：{{ company_info[1] }}</th>
+        </tr>
+        <tr>
+            <td align="center" colspan="6">硬件信息：{{ company_info[3] }}</td>
+        </tr>
+
+        <tr>
+            <td align="center" colspan="2">cpuPercent: {{ before_list[2] }}%</td>
+            <td align="center" colspan="2">ramUsed: {{ before_list[3] }}G</td>
+            <td align="center" colspan="2">diskUsed: {{ before_list[4] }}M</td>
+        </tr>
+        <tr>
+            <th align="center" colspan="3">cameraName</th>
+            <th align="center" colspan="3">statues</th>
+        </tr>
+
+         <tr>
+            <td align="center" colspan="3">{{ camera_info_key[0] }}</td>
+            <td align="center" colspan="3">{{ camera_info[camera_info_key[0]] }}</td>
+         </tr>
+         <tr>
+            <td align="center" colspan="3">{{ camera_info_key[1] }}</td>
+            <td align="center" colspan="3">{{ camera_info[camera_info_key[1]] }}</td>
+        </tr>
+        <tr>
+            <th>帧率</th>
+            <th colspan="2">检测延时</th>
+            <th colspan="2">特征延时</th>
+            <th>人脸数</th>
+        </tr>
+        <tr>
+            <td>{{face_info['fps']}}</td>
+            <td colspan="2">{{face_info['detectDelay']}}</td>
+            <td colspan="2">{{face_info['featureDelay']}}</td>
+            <td>{{face_info['numofFaces']}}</td>
+        </tr>
+    </table>
+    <br />
+    <table border="1px" width="600px" height="400px" style="text-align: center">
+        <tr>
+            <th colspan="2">进程名称</th>
+            <th>cpuPercent</th>
+            <th>ramUsed</th>
+            <th>upTime</th>
+            <th>Count</th>
+        </tr>
+        {% for i in range(0,num_subprocess) %}
+         <tr>
+            <td colspan="2">{{ subprocess_info_key[i] }}</td>
+            <td>{{ subprocess_info[subprocess_info_key[i]][0] }}%</td>
+            <td>{{ subprocess_info[subprocess_info_key[i]][1] }}M</td>
+            <td>{{ subprocess_info[subprocess_info_key[i]][2] }}G</td>
+            <td>{{ subprocess_info[subprocess_info_key[i]][3] }}</td>
+        </tr>
+        {% endfor %}
+        <tr>
+            <th>name</th>
+            <th colspan="2">time</th>
+            <th colspan="2">msg</th>
+            <th>count</th>
+        </tr>
+        {% for j in range(0,num_exception) %}
+        <tr>
+            <td>{{ exception_info[j][exception_info_key[0]] }}</td>
+            <td colspan="2">{{ exception_info[j][exception_info_key[1]] }}</td>
+            <td colspan="2">{{ exception_info[j][exception_info_key[2]] }}</td>
+            <td>{{ exception_info[j][exception_info_key[3]] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+</body>
+</html>

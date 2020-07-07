@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>设备概览</title>
+
+</head>
+<body>
+    <h1 align="lefts">设备概览表</h1>
+    {% for i in range(0,table_rows) %}
+    <table border="0px" width="600px" height="200px" style="text-align: center">
+            {% if device_info[i][2] == device_info[i-1][2] %}
+            {% else %}
+            <tr>
+                <th colspan="5">公司名称：{{ device_info[i][2] }}</th>
+            </tr>
+            {% endif %}
+            <tr>
+                <td>设备</td>
+                <td>cpuPercent</td>
+                <td>ramUsed</td>
+                <td>diskUsed</td>
+                <td>cameraNumber</td>
+            </tr>
+
+            <tr>
+                <td><a href="{{ url_for('device_details') }}?deviceID={{
+                             log_list[i][5] }}">{{ device_info[i][1] }}
+                </a></td>
+                <td>{{ log_list[i][2] }}%</td>
+                <td>{{ log_list[i][3] }}M</td>
+                <td>{{ log_list[i][4] }}G</td>
+                <td>{{ device_info[i][4] }}个</td>
+            </tr>
+    </table>
+    {% endfor %}
+
+</body>
+</html>
